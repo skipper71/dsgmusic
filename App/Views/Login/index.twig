@@ -4,11 +4,12 @@
 <head>
   <meta charset="utf-8">
 
-  <title>The HTML5 Herald</title>
+  <title>DSG Music</title>
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
 
   <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <link rel="icon" href="favicon.png">
   
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <meta name="google-signin-client_id" content="74263314662-02c3kue0uvnsnunii0r9j705r3v2diec.apps.googleusercontent.com">
@@ -25,7 +26,7 @@
         // SERVER SIDE
         var id_token = googleUser.getAuthResponse().id_token;
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'https://music.visitrapallo.com/token.php');
+        xhr.open('POST', 'https://dsgmusic.netsons.org/token.php');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
             console.log('Signed in as: ' + xhr.responseText);

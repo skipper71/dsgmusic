@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Twig\Loader\FilesystemLoader;
+use Twig\Environment;
 /**
  * View
  *
@@ -44,8 +46,10 @@ class View
         static $twig = null;
 
         if ($twig === null) {
-            $loader = new \Twig\Loader\Filesystemloader(dirname(__DIR__) . '/App/Views');
-            $twig = new \Twig\Environment($loader);
+            #$loader = new \Twig\Loader\Filesystemloader(dirname(__DIR__) . '/App/Views');
+            #$twig = new \Twig\Environment($loader);
+            $loader = new Filesystemloader(dirname(__DIR__) . '/App/Views');
+            $twig = new Environment($loader);
         }
 
         echo $twig->render($template, $args);

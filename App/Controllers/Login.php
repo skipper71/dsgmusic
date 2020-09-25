@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use \Core\View;
+use Google_Client;
 
 /**
  * Home controller
@@ -28,7 +29,7 @@ class Login extends \Core\Controller
         $CLIENT_ID = "74263314662-02c3kue0uvnsnunii0r9j705r3v2diec.apps.googleusercontent.com";
         $idtoken = $_POST['idtoken'];
 
-        $logfile = dirname(__DIR__) . '/logs/' . 'login-' . date('Y-m-d') . '.log';
+        $logfile = dirname(dirname(__DIR__)) . '/logs/' . 'login-' . date('Y-m-d') . '.log';
         
         $fp = fopen($logfile, 'a');
         

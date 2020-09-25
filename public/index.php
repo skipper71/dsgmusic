@@ -25,6 +25,8 @@ set_exception_handler('Core\Error::exceptionHandler');
  */
 $router = new Core\Router();
 
+// $t = new Twig\Loader\FilesystemLoader();
+
 // Add the routes
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('login.php', ['controller' => 'Login', 'action' => 'index']);
