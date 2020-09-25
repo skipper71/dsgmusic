@@ -1,0 +1,15 @@
+# Ignore the private_files directory
+private_files/
+
+# Ignore Logs
+logs/
+*.log
+
+# Ignore the build directory
+#/dist
+
+# The file containing environment variables 
+#.env
+
+# Ignore IDE specific files
+nbproject/
