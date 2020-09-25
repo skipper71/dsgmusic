@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use \Core\View;
 use Google_Client;
+use App\Config;
+use App\Helpers\SessionHelper;
 
 /**
  * Home controller
@@ -19,17 +21,20 @@ class Login extends \Core\Controller
      * @return void
      */
     public function indexAction(){
+        $sh = new SessionHelper();
         
-        View::renderTemplate('Login/index.twig');
-        
-    }
+        View::renderTemplate('Login/index.twig', [
+            "sh" => $sh,
+        ]);
+    }        
     
     public function tokenAction(){
         $NEW_LINE = "\n";
         $CLIENT_ID = "74263314662-02c3kue0uvnsnunii0r9j705r3v2diec.apps.googleusercontent.com";
         $idtoken = $_POST['idtoken'];
 
-        $logfile = dirname(dirname(__DIR__)) . '/logs/' . 'login-' . date('Y-m-d') . '.log';
+        // $logfile = dirname(dirname(__DIR__)) . '/logs/' . 'login-' . date('Y-m-d') . '.log';
+        $logfile = Config::LOGS_DIR . '/' . 'login-' . date('Y-m-d') . '.log';
         
         $fp = fopen($logfile, 'a');
         
@@ -65,6 +70,8 @@ class Login extends \Core\Controller
             fwrite($fp, $write);
 
         }
-    
+        
+        fclose($fp);        
+
     }
 }

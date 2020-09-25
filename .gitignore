@@ -5,6 +5,9 @@ private/
 # logs/
 *.log
 
+# Ignore Sessions
+env/sessions/
+
 # Ignore the build directory
 #/dist
 

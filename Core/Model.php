@@ -2,7 +2,6 @@
 
 namespace Core;
 
-use PDO;
 use App\Config;
 
 /**
@@ -18,6 +17,7 @@ abstract class Model
      *
      * @return mixed
      */
+    /*
     protected static function getDB()
     {
         static $db = null;
@@ -32,4 +32,6 @@ abstract class Model
 
         return $db;
     }
+     * 
+     */
 }

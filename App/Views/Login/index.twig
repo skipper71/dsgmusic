@@ -51,5 +51,16 @@
   <div class="g-signin2" data-onsuccess="onSignIn"></div>
   <a href="#" onclick="signOut();">Sign out</a>
   
+  <p>Security Token = {{ sh.security.token }}</p>
+
+  <audio controls>
+    <!--<source src="/music.php?key=edo&token={{ sh.security.token }}" type="audio/mpeg" controlsList="nodownload">-->
+    <source src="/music.php?key=edo&token={{ sh.security.token }}" type="audio/mpeg">
+  </audio>
+  <audio controls>
+    <source src="/music.php?key=vasco&token={{ sh.security.token }}" type="audio/mpeg" controlsList="nodownload">
+  </audio>
+  
+  <a href="/">Home</a>  
 </body>
 </html>
