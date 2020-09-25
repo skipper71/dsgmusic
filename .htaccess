@@ -1,0 +1,11 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !^/public
+RewriteRule ^(.*)$ /public/$1 [NC,L]
+
+#RewriteRule ^(.*)$ /public/$1 [L]
+
+# This seemed the simplest solution:
+# RewriteCond %{REQUEST_URI} ^/$
+# RewriteRule (.*) http://www.example.com/public [R=301,L]
+# I was getting redirect loops with some of the other solutions.
