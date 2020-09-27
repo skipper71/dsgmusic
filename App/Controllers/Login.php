@@ -4,9 +4,12 @@ namespace App\Controllers;
 
 use \Core\View;
 use Google_Client;
+
 use App\Config;
 use App\Helpers\SessionHelper;
+use App\Models\Session\GoogleUserModel;
 
+use App\Helpers\CommonFunctions;
 /**
  * Home controller
  *
@@ -28,7 +31,19 @@ class Login extends \Core\Controller
         ]);
     }        
     
+    public function logoutAction(){
+        $sh = new SessionHelper();
+        
+        SessionHelper::logoutGoogleUser();
+        
+        View::renderTemplate('Login/index.twig', [
+            "sh" => $sh,
+        ]);
+    }        
+    
     public function tokenAction(){
+        $sh = new SessionHelper();
+        
         $NEW_LINE = "\n";
         $CLIENT_ID = "74263314662-02c3kue0uvnsnunii0r9j705r3v2diec.apps.googleusercontent.com";
         $idtoken = $_POST['idtoken'];
@@ -36,17 +51,13 @@ class Login extends \Core\Controller
         // $logfile = dirname(dirname(__DIR__)) . '/logs/' . 'login-' . date('Y-m-d') . '.log';
         $logfile = Config::LOGS_DIR . '/' . 'login-' . date('Y-m-d') . '.log';
         
-        $fp = fopen($logfile, 'a');
-        
         try {
 
             if (isset($idtoken)){
-                $write = "Token ID = ".$idtoken.$NEW_LINE;
-                fwrite($fp, $write);
+                CommonFunctions::writeLog("Token ID = ".$idtoken, 'login');
 
             } else {
-                $write = "No token".$NEW_LINE;
-                fwrite($fp, $write);
+                CommonFunctions::writeLog("No token", 'login');
             }
 
             $client = new Google_Client(['client_id' => $CLIENT_ID]);  // Specify the CLIENT_ID of the app that accesses the backend
@@ -54,24 +65,27 @@ class Login extends \Core\Controller
 
             if ($payload) {
               // $userid = $payload['sub'];
+                
+                $googleUser = new GoogleUserModel();
+                $googleUser->arrayToModel($payload);
+                $sh->setGoogleUser($googleUser);
+                
+                echo($googleUser->getName());           // only needed to echo something in JS
+                
               foreach ($payload as $key => $value){
                 // If request specified a G Suite domain:
                 //$domain = $payload['hd'];
-                $write = $key." => ".$value.$NEW_LINE;
-                fwrite($fp, $write);
+                CommonFunctions::writeLog($key." => ".$value, 'login');
               }
             } else {
-              // Invalid ID token
-                fwrite($fp, "Invalid ID token".$NEW_LINE);
+                // Invalid ID token
+                CommonFunctions::writeLog("Invalid ID token", 'login');
             }
 
         } catch (Exception $e){
-            $write = "Error : ".$e->getMessage().$NEW_LINE;
-            fwrite($fp, $write);
-
+            // general error
+            CommonFunctions::writeLog("Error : ".$e->getMessage(), 'login');
         }
-        
-        fclose($fp);        
 
     }
 }

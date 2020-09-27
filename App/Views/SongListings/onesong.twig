@@ -1,0 +1,60 @@
+{% extends "base.twig" %}
+
+{% block title %}One Song Page{% endblock %}
+
+{% block body %}
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }        
+</style>
+
+    <h1>One Song Page</h1>
+    
+    <p>Security Token = {{ sh.security.token }}</p>
+
+    <a href="/">Back to Home</a><br/>
+    <a href="listall.php">Back to All Songs</a><br/>
+    <br/>
+    <a href="login.php">Login</a><br/>
+
+    {% if sh.googleUser.name is null %}
+        User is not logged in
+    {% else %}
+        Logged in user : {{ sh.googleUser.name }}
+    {% endif %}                        
+
+    <table>
+	<caption>
+            Here we assign header information to cells by setting the scope attribute.
+	</caption>
+	<colgroup />
+	<colgroup span="2" title="title" />
+	<tbody>
+            <tr>
+                <th>Id</th><td>{{ song.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th><td>{{ song.title }}</td>
+            </tr>
+            <tr>
+                <th>Filename</th><td>{{ song.filename }}</td>
+            </tr>
+            <tr>
+                <th>Comments</th><td>{{ song.comments }}</td>
+            </tr>
+            <tr>
+                <th>Categories</th><td>{{ song.categories }}</td>
+            </tr>
+            <tr>
+                <th>Link</th>
+            </tr>
+	</tbody>
+    </table>
+            
+  <audio controls>
+    <source src="/music.php?key={{ song.filename |replace({'.mp3': ''}) }}&token={{ sh.security.token }}" type="audio/mpeg">
+  </audio>
+    
+{% endblock %}

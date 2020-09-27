@@ -42,8 +42,12 @@ $router = new Core\Router();
 // Add the routes
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('login.php', ['controller' => 'Login', 'action' => 'index']);
+$router->add('logout.php', ['controller' => 'Login', 'action' => 'logout']);
 $router->add('token.php', ['controller' => 'Login', 'action' => 'token']);
 $router->add('music.php', ['controller' => 'Music', 'action' => 'index']);
+$router->add('listall.php', ['controller' => 'SongListings', 'action' => 'listAll']);
+$router->add('listcategory.php', ['controller' => 'SongListings', 'action' => 'listCategory']);
+$router->add('onesong.php', ['controller' => 'SongListings', 'action' => 'oneSong']);
 $router->add('{controller}/{action}');
     
 $router->dispatch($_SERVER['QUERY_STRING']);

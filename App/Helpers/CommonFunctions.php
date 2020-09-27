@@ -32,8 +32,8 @@ class CommonFunctions {
         
         return $token;
     }
-    public static function writeLog($text){
-        $logfile = Config::LOGS_DIR . '/' . 'login-' . date('Y-m-d') . '.log';
+    public static function writeLog($text, $prefix = ''){
+        $logfile = Config::LOGS_DIR . '/' . ($prefix == '' ? '' : $prefix.'-' ) . date('Y-m-d') . '.log';
         
         $fp = fopen($logfile, 'a');
         fwrite($fp, $text.self::NEW_LINE);                
