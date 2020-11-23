@@ -1,0 +1,75 @@
+{% extends "base.twig" %}
+
+{% block title %}List all songs{% endblock %}
+
+{% block body %}
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }        
+</style>
+
+
+    <h1>List all Media</h1>
+    
+    <p>Security Token = {{ sh.security.token }}</p>
+
+    <a href="/">Back to Home</a><br/>
+    <br/>
+    <a href="login.php">Login</a><br/>
+
+    {% if sh.googleUser.name is null %}
+        User is not logged in
+    {% else %}
+        Logged in user : {{ sh.googleUser.name }}
+    {% endif %}                        
+
+    <table>
+	<caption>
+            Here we assign header information to cells by setting the scope attribute.
+	</caption>
+	<colgroup />
+	<colgroup span="2" title="title" />
+	<thead>
+            <tr>
+                <th>Id</th>
+                <th>Tipo</th>
+                <th>Catalogo Ds</th>
+                <th>Autore</th>
+                <th>Opera</th>
+                <th>Etichetta</th>
+                <th>Anno</th>
+                <th>Note</th>
+                <th>Link</th>
+            </tr>
+	</thead>
+	<tbody>
+        {% for media in medias %}
+            <tr>
+                <td>{{ media.id }}</td>
+                <td>{{ media.mediaTipo }}</td>
+                <td>{{ media.catalogoDs }}</td>
+                <td>{{ media.autore }}</td>
+                <td>{{ media.opera }}</td>
+                <td>{{ media.etichetta }}</td>
+                <td>{{ media.anno }}</td>
+                <td>{{ media.note }}</td>
+                <td><a href="media_one.php?id={{ media.id }}">Link</a></td>
+            </tr>
+        {% endfor%}
+	</tbody>
+	<tfoot>
+                <td>media.id</td>
+                <td>media.mediaTipo</td>
+                <td>media.catalogoDs</td>
+                <td>media.autore</td>
+                <td>media.opera</td>
+                <td>media.etichetta</td>
+                <td>media.anno</td>
+                <td>media.note</td>
+                <td>...</td>
+	</tfoot>
+    </table>
+    
+{% endblock %}

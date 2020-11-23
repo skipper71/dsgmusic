@@ -48,6 +48,10 @@ $router->add('music.php', ['controller' => 'Music', 'action' => 'index']);
 $router->add('listall.php', ['controller' => 'SongListings', 'action' => 'listAll']);
 $router->add('listcategory.php', ['controller' => 'SongListings', 'action' => 'listCategory']);
 $router->add('onesong.php', ['controller' => 'SongListings', 'action' => 'oneSong']);
+
+$router->add('media_listall.php', ['controller' => 'MediaListings', 'action' => 'listAll']);
+$router->add('media_one.php', ['controller' => 'MediaListings', 'action' => 'listOne']);
+
 $router->add('{controller}/{action}');
     
 $router->dispatch($_SERVER['QUERY_STRING']);
