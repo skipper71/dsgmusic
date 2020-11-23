@@ -77,11 +77,12 @@ class MediaModel extends Model{
     
     // FUNCTIONS
     public static function retrieveAll(){
-        $models = [];
+        $models = [];        
         $results = MediaPersistence::retrieveAll();
         
         foreach ($results as $result) {
             $mymodel = new static();            
+            
             $mymodel->setId($result['id']);
             $mymodel->setMediaTipo($result['media_tipo']);
             $mymodel->setCatalogoDs($result['catalogo_ds']);

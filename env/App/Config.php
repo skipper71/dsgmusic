@@ -13,12 +13,12 @@ class Config
     /**
      * Database configuration
      */
-    const DB_HOST = 'your-database-host';
-    const DB_NAME = 'your-database-name';
-    const DB_USER = 'your-database-user';
-    const DB_PASSWORD = 'your-database-password';
+    const DB_HOST = 'localhost';
+    const DB_NAME = 'gsukvfnu_dsgm1';
+    const DB_USER = 'gsukvfnu_dsgm1';
+    const DB_PASSWORD = 'Lq;^WLUBkR^v';
     
-    const DB_TABLE_PREFIX = 'dsgm_';
+    const DB_TABLE_PREFIX = 'dsgm';
 
     /**
      * Show or hide error messages on screen

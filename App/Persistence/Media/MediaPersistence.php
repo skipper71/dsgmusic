@@ -12,6 +12,8 @@ use PDO;
 use Core\Persistence;
 use App\Config;
 
+use App\Helpers\CommonFunctions;
+
 /**
  * Description of SongPersistence
  *
@@ -22,7 +24,7 @@ class MediaPersistence extends Persistence {
         
     public static function retrieveAll() {
         
-        $results = null;
+        $results = [];
         
         try {
             $db = static::getDB();
@@ -32,6 +34,7 @@ class MediaPersistence extends Persistence {
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (PDOException $e) {
+            CommonFunctions::writeLog("Error : ".$e->getMessage());
             echo $e->getMessage();
         }
                     
@@ -72,7 +75,7 @@ class MediaPersistence extends Persistence {
             SELECT 
                 *
             FROM 
-                $table_prefix.'media'
+                dsgm_media                
             $where_cond
             
 SQL;
