@@ -58,5 +58,49 @@
             </tr>
 	</tbody>
     </table>
+
+        {% for media in medias %}
+            <tr>
+                <td>{{ media.id }}</td>
+                <td>{{ media.mediaTipo }}</td>
+                <td>{{ media.catalogoDs }}</td>
+                <td>{{ media.autore }}</td>
+                <td>{{ media.opera }}</td>
+                <td>{{ media.etichetta }}</td>
+                <td>{{ media.anno }}</td>
+                <td>{{ media.note }}</td>
+                <td><a href="media_one.php?id={{ media.id }}">Link</a></td>
+            </tr>
+        {% endfor%}
+
+    {% if interpreti|length >= 1 %}
+        <h3>Interpreti<h3>
+
+        <table>
+            <caption>
+                Here we assign header information to cells by setting the scope attribute.
+            </caption>
+            <colgroup />
+            <colgroup title="title" />
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <th>Catalogo Ds</th>
+                    <th>Tipo</th>
+                    <th>Interpreti</th>
+                </tr>
+                
+                {% for interprete in interpreti %}
+                    <tr>
+                        <td>{{ interprete.id }}</td>
+                        <td>{{ interprete.catalogoDs }}</td>
+                        <td>{{ interprete.tipoInterprete }}</td>
+                        <td>{{ interprete.interpreti }}</td>
+                    </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+
+    {% endif %}
     
 {% endblock %}

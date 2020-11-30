@@ -5,6 +5,7 @@ namespace App\Controllers;
 use \Core\View;
 use App\Helpers\SessionHelper;
 use App\Models\Media\MediaModel;
+use App\Models\Media\MediaInterpretiModel;
 /**
  * Home controller
  *
@@ -26,10 +27,19 @@ class MediaListings extends \Core\Controller {
         $sh = new SessionHelper();
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
         
+        $media = new MediaModel();
+        $interpreti = array();
+        
         $media = MediaModel::retrieveOne($id);
+        if (isset($media)){
+            $catalogo_ds = $media->getCatalogoDs();
+            $interpreti = MediaInterpretiModel::retrieveAllByCatalogoDS($catalogo_ds);
+        }
+        
         View::renderTemplate('MediaListings/one.twig', [
             "sh" => $sh,
             "media" => $media,
+            "interpreti" => $interpreti,
         ]);
     }
     
