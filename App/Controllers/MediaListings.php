@@ -43,4 +43,21 @@ class MediaListings extends \Core\Controller {
         ]);
     }
     
+    public function searchAction(){
+        $sh = new SessionHelper();
+        $medias = array();
+        
+        if(isset($_GET['search_query'])){
+            $search_query = $_GET['search_query'];            
+        } else {
+            $search_query = null;
+        }
+        
+        View::renderTemplate('MediaListings/search.twig', [
+            "sh" => $sh,
+            "search_query" =>$search_query,
+            "medias" => $medias,
+        ]);
+    }
+    
 }

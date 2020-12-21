@@ -51,6 +51,7 @@ $router->add('onesong.php', ['controller' => 'SongListings', 'action' => 'oneSon
 
 $router->add('media_listall.php', ['controller' => 'MediaListings', 'action' => 'listAll']);
 $router->add('media_one.php', ['controller' => 'MediaListings', 'action' => 'listOne']);
+$router->add('media_search.php', ['controller' => 'MediaListings', 'action' => 'search']);
 
 $router->add('{controller}/{action}');
     

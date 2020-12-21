@@ -1,0 +1,85 @@
+{% extends "base.twig" %}
+
+{% block title %}Search Page - Media{% endblock %}
+
+{% block body %}
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }        
+</style>
+
+
+    <h1>Media Search</h1>
+    
+    <p>Security Token = {{ sh.security.token }}</p>
+
+    <a href="/">Back to Home</a><br/>
+    <br/>
+    <a href="login.php">Login</a><br/>
+
+    {% if sh.googleUser.name is null %}
+        User is not logged in
+    {% else %}
+        Logged in user : {{ sh.googleUser.name }}
+    {% endif %}                        
+   
+    <form action="./media_search.php" method="get">
+        <label for="search_query">Ricerca per : </label>
+        <input type="text" name="search_query"/><br/>
+        <button type="submit">Search!</button>
+    </form>
+    
+    <h3>Ricerca precedente : {{ search_query }}</h3>
+    {#
+    Modo 1: 
+    <table>
+	<caption>
+            Here we assign header information to cells by setting the scope attribute.
+	</caption>
+	<colgroup />
+	<colgroup span="2" title="title" />
+	<thead>
+            <tr>
+                <th>Id</th>
+                <th>Tipo</th>
+                <th>Catalogo Ds</th>
+                <th>Autore</th>
+                <th>Opera</th>
+                <th>Etichetta</th>
+                <th>Anno</th>
+                <th>Note</th>
+                <th>Link</th>
+            </tr>
+	</thead>
+	<tbody>
+        {% for media in medias %}
+            <tr>
+                <td>{{ media.id }}</td>
+                <td>{{ media.mediaTipo }}</td>
+                <td>{{ media.catalogoDs }}</td>
+                <td>{{ media.autore }}</td>
+                <td>{{ media.opera }}</td>
+                <td>{{ media.etichetta }}</td>
+                <td>{{ media.anno }}</td>
+                <td>{{ media.note }}</td>
+                <td><a href="media_one.php?id={{ media.id }}">Link</a></td>
+            </tr>
+        {% endfor%}
+	</tbody>
+	<tfoot>
+                <td>media.id</td>
+                <td>media.mediaTipo</td>
+                <td>media.catalogoDs</td>
+                <td>media.autore</td>
+                <td>media.opera</td>
+                <td>media.etichetta</td>
+                <td>media.anno</td>
+                <td>media.note</td>
+                <td>...</td>
+	</tfoot>
+    </table>
+    #}
+    
+{% endblock %}

@@ -49,15 +49,15 @@ class MediaInterpretiModel extends Model{
     }
             
     public static function retrieveAllByCatalogoDS($catalogo_ds){
-        $model = false;        
+        $models = array();        
         $results = MediaInterpretiPersistence::retrieveAllByCatalogoDS($catalogo_ds);
         
         foreach ($results as $result) {
             $mymodel = new static();            
             $mymodel->setId($result['id']);
             $mymodel->setCatalogoDs($result['catalogo_ds']);
-            $mymodel->setCatalogoDs($result['interprete_tipo']);
-            $mymodel->setCatalogoDs($result['interpreti']);
+            $mymodel->setInterpreteTipo($result['interprete_tipo']);
+            $mymodel->setInterpreti($result['interpreti']);
             
             $models[$mymodel->getId()] = $mymodel;
         }
@@ -65,9 +65,7 @@ class MediaInterpretiModel extends Model{
         // It also gives you FALSE in case the array is empty.
         // See : https://stackoverflow.com/questions/1617157/how-to-get-the-first-item-from-an-associative-php-array/42066999
         
-        $model = reset($models);
-        
-        return $model;
+        return $models;
     }
     
 }
