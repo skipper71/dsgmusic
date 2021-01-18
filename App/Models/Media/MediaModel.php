@@ -123,5 +123,30 @@ class MediaModel extends Model{
         
         return $model;
     }
+
+    public static function retrieveSimpleSearch($searchkey){
+
+        $models = [];        
+        $results = MediaPersistence::retrieveSimpleSearch($searchkey);
+        
+        foreach ($results as $result) {
+            $mymodel = new static();            
+            $mymodel->setId($result['id']);
+            $mymodel->setMediaTipo($result['media_tipo']);
+            $mymodel->setCatalogoDs($result['catalogo_ds']);
+            $mymodel->setAutore($result['autore']);
+            $mymodel->setOpera($result['opera']);
+            $mymodel->setEtichetta($result['etichetta']);
+            $mymodel->setAnno($result['anno']);
+            $mymodel->setNote($result['note']);
+            
+            $models[$mymodel->getId()] = $mymodel;
+        }
+        // reset() gives you the first value of the array if you have an element inside the array:
+        // It also gives you FALSE in case the array is empty.
+        // See : https://stackoverflow.com/questions/1617157/how-to-get-the-first-item-from-an-associative-php-array/42066999
+                
+        return $models;
+    }
     
 }

@@ -65,6 +65,48 @@ class MediaPersistence extends Persistence {
         return $results;
     }
 
+    public static function retrieveSimpleSearch($searchkey){
+        $results = [];
+
+        try {
+            $db = static::getDB();
+            // $query = self::getMainQuery("id = :id");
+            $table_prefix = Config::DB_TABLE_PREFIX;
+
+            $searchkey = strtoupper($searchkey);
+            
+            $query = <<< SQL
+                SELECT 
+                    *
+                FROM 
+                    dsgm_media                
+                WHERE
+                    UPPER(autore) LIKE :key_autore
+                OR
+                    UPPER(opera) LIKE :key_opera
+                OR
+                    UPPER(etichetta) LIKE :key_etichetta            
+SQL;
+            
+
+            // $stmt = $db->query($query);                  // SQL statico
+            $stmt = $db->prepare($query);
+            $stmt->bindValue(':key_autore', '%'.$searchkey.'%', PDO::PARAM_STR);
+            $stmt->bindValue(':key_opera', '%'.$searchkey.'%', PDO::PARAM_STR);
+            $stmt->bindValue(':key_etichetta', '%'.$searchkey.'%', PDO::PARAM_STR);
+
+            // $results = $stmt->fetchAll(PDO::FETCH_ASSOC); // SQL statico
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+            $results = $stmt->fetchAll();
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        
+        return $results;
+    }
+
     private static function getMainQuery($where = null) {
         
         $table_prefix = Config::DB_TABLE_PREFIX;
