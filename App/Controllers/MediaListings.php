@@ -53,6 +53,8 @@ class MediaListings extends \Core\Controller {
             $search_query = null;
         }
         
+        $medias = MediaModel::retrieveAll();
+        
         View::renderTemplate('MediaListings/search.twig', [
             "sh" => $sh,
             "search_query" =>$search_query,
