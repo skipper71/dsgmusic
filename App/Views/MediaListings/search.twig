@@ -32,8 +32,9 @@
     </form>
     
     <h3>Ricerca precedente : {{ search_query }}</h3>
-    {#
-    Modo 1: 
+    
+    <!--Modo 1: -->
+    {% if medias |length > 0%}
     <table>
 	<caption>
             Here we assign header information to cells by setting the scope attribute.
@@ -80,6 +81,6 @@
                 <td>...</td>
 	</tfoot>
     </table>
-    #}
+    {% endif %}
     
 {% endblock %}
