@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace App\Persistence\Media;
+namespace App\Persistence\News;
 
 use PDO;
 use Core\Persistence;
@@ -19,7 +19,7 @@ use App\Helpers\CommonFunctions;
  *
  * @author Utente
  */
-class MediaPersistence extends Persistence {
+class NewsPersistence extends Persistence {
     //put your code here
         
     public static function retrieveAll() {
@@ -75,7 +75,6 @@ class MediaPersistence extends Persistence {
 
             $searchkey = strtoupper($searchkey);
             
-            /*
             $query = <<< SQL
                 SELECT 
                     *
@@ -88,37 +87,13 @@ class MediaPersistence extends Persistence {
                 OR
                     UPPER(etichetta) LIKE :key_etichetta            
 SQL;
-             * 
-             */
-            $query = <<< SQL
-                SELECT 
-                    *
-                FROM 
-                    dsgm_media                
-                WHERE
-                    UPPER(autore) LIKE :key_autore
-                OR
-                    UPPER(opera) LIKE :key_opera
-                OR
-                    UPPER(etichetta) LIKE :key_etichetta
-                OR 
-                    catalogo_ds IN (
-                        SELECT DISTINCT
-                            catalogo_ds
-                        FROM 
-                            dsgm_media_interpreti                
-                        WHERE
-                            UPPER(interpreti) LIKE :key_interpreti
-                    )                             
-SQL;
-
             
+
             // $stmt = $db->query($query);                  // SQL statico
             $stmt = $db->prepare($query);
             $stmt->bindValue(':key_autore', '%'.$searchkey.'%', PDO::PARAM_STR);
             $stmt->bindValue(':key_opera', '%'.$searchkey.'%', PDO::PARAM_STR);
             $stmt->bindValue(':key_etichetta', '%'.$searchkey.'%', PDO::PARAM_STR);
-            $stmt->bindValue(':key_interpreti', '%'.$searchkey.'%', PDO::PARAM_STR);
 
             // $results = $stmt->fetchAll(PDO::FETCH_ASSOC); // SQL statico
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
