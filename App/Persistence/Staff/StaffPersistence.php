@@ -19,7 +19,7 @@ use App\Helpers\CommonFunctions;
  *
  * @author Utente
  */
-class MediaPersistence extends Persistence {
+class StaffPersistence extends Persistence {
     //put your code here
         
     public static function retrieveAll() {
