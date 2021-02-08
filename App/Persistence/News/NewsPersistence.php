@@ -117,7 +117,7 @@ SQL;
             SELECT 
                 *
             FROM 
-                dsgm_media                
+                dsgm_news                
             $where_cond
             
 SQL;
