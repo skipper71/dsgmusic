@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use \Core\View;
 use App\Helpers\SessionHelper;
+use App\Models\Staff\StaffModel;
 
 /**
  * Home controller
@@ -23,6 +24,20 @@ class Home extends \Core\Controller {
         
         View::renderTemplate('Home/index.twig', [
             "sh" => $sh,
+        ]);
+    }
+    
+    public function demoAction(){
+        $sh = new SessionHelper();
+        $title = "Pagina di TEST";
+        
+        $staffs = StaffModel::retrieveAll();
+        
+        View::renderTemplate('startpage.twig', [
+            "sh" => $sh,
+            "title" => $title,
+            "staffs" => $staffs,
+            
         ]);
     }
 }
