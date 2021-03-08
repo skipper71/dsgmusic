@@ -5,6 +5,7 @@ namespace App\Controllers;
 use \Core\View;
 use App\Helpers\SessionHelper;
 use App\Models\Staff\StaffModel;
+use App\Models\News\NewsModel;
 
 /**
  * Home controller
@@ -32,11 +33,13 @@ class Home extends \Core\Controller {
         $title = "Pagina di TEST";
         
         $staffs = StaffModel::retrieveAll();
+        $newsevents = NewsModel::retrieveAll();
         
         View::renderTemplate('startpage.twig', [
             "sh" => $sh,
             "title" => $title,
             "staffs" => $staffs,
+            "newsevents" => $newsevents,
             
         ]);
     }

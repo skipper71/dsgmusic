@@ -1647,6 +1647,46 @@
                     <p class="lead c-light">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
                 </div>
                 <div class="news-events-list">
+                    {% for newsevent in newsevents %}
+                    <div class="single-news-event">
+                        <figure>
+                            <img src="{{ newsevent.urlImmagine }}" alt="News & Event" />
+                        </figure>
+                        <div class="content-block">
+                            <div class="member-info">
+                                <div class="content_meta_category">
+                                    <span class="arrow-right"></span>
+                                    <a href="#." rel="category tag">{{ newsevent.categoria }}</a>
+                                </div>
+                                <ul class="news-event-info">
+                                    <li>
+                                        <a href="#" target="_blank">
+                                            <i class="fa fa-calendar"></i>
+                                            {{ newsevent.data }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" target="_blank">
+                                            <i class="fa fa-clock-o"></i>
+                                            {{ newsevent.oraInizio }} - {{ newsevent.oraFine }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" target="_blank">
+                                            <i class="fa fa-map-marker"></i>
+                                            {{ newsevent.location }}
+                                        </a>
+                                    </li>
+                                </ul>
+                                <h3><a href=".html#">{{ newsevent.titolo }}</a></h3>
+                                <p>{{ newsevent.contenuto }}</p>
+                                <a class="btn btn-primary" href="#">Read More</a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    {% endfor %}
+                    {#
                     <div class="single-news-event">
                         <figure>
                             <img src="assets/images/news-event/news-event-01.jpg" alt="News & Event" />
@@ -1745,6 +1785,7 @@
                             </div>
                         </div>
                     </div>
+                    #}
                     <div class="clearfix"></div>
                 </div>
             </div>

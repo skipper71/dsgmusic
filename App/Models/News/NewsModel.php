@@ -19,6 +19,7 @@ class NewsModel extends Model{
     protected $titolo;
     protected $autore;
     protected $url_immagine;
+    protected $location;
     protected $data;
     protected $ora_inizio;
     protected $ora_fine;
@@ -39,6 +40,9 @@ class NewsModel extends Model{
     }
     public function getUrlImmagine(){
         return $this->url_immagine;
+    }
+    public function getLocation(){
+        return $this->location;
     }
     public function getData(){
         return $this->data;
@@ -69,6 +73,9 @@ class NewsModel extends Model{
     public function setUrlImmagine($value){
         $this->url_immagine = $value;
     }
+    public function setLocation($value){
+        $this->location = $value;
+    }
     public function setData($value){
         $this->data = $value;
     }
@@ -95,6 +102,7 @@ class NewsModel extends Model{
             $mymodel->setTitolo($result['titolo']);
             $mymodel->setAutore($result['autore']);
             $mymodel->setUrlImmagine($result['url_immagine']);
+            $mymodel->setLocation($result['location']);
             $mymodel->setData($result['data']);
             $mymodel->setOraInizio($result['ora_inizio']);
             $mymodel->setOraFine($result['ora_fine']);
@@ -118,6 +126,7 @@ class NewsModel extends Model{
             $mymodel->setTitolo($result['titolo']);
             $mymodel->setAutore($result['autore']);
             $mymodel->setUrlImmagine($result['url_immagine']);
+            $mymodel->setLocation($result['location']);
             $mymodel->setData($result['data']);
             $mymodel->setOraInizio($result['ora_inizio']);
             $mymodel->setOraFine($result['ora_fine']);
