@@ -144,4 +144,28 @@ class StaffModel extends Model{
         return $model;
     }
     
+    public static function retrieveOldest3(){
+        $models = [];        
+        $results = StaffPersistence::retrieveOldest3();
+        
+        foreach ($results as $result) {
+            $mymodel = new static();            
+            
+            $mymodel->setId($result['id']);
+            $mymodel->setNome($result['nome']);
+            $mymodel->setIncarico($result['incarico']);
+            $mymodel->setLinkLinkedin($result['link_linkedin']);
+            $mymodel->setLinkFacebook($result['link_facebook']);
+            $mymodel->setLinkTwitter($result['link_twitter']);
+            $mymodel->setLinkSkype($result['link_skype']);
+            $mymodel->setLinkInstagram($result['link_instagram']);
+            $mymodel->setDescrizione($result['descrizione']);
+            $mymodel->setUrlImmagine($result['url_immagine']);
+            
+            $models[$mymodel->getId()] = $mymodel;
+        }
+        
+        return $models;
+    }
+    
 }
