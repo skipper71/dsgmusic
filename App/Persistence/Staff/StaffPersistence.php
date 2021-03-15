@@ -82,6 +82,51 @@ SQL;
      
         return $mainQuery;
     }
-                
     
+    public static function retrieveOldest3() {
+        
+        $results = [];
+        
+        try {
+            $db = static::getDB();
+            //$query = self::getOrderLimitQuery(null);
+            $query = "Select * From dsgm_staff ORDER BY id LIMIT 3" ;
+
+            $stmt = $db->query($query);
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            CommonFunctions::writeLog("Error : ".$e->getMessage());
+            echo $e->getMessage();
+        }
+                    
+        return $results;
+        
+    }
+                
+    private static function getOrderLimitQuery($where = null, $order = null, $limit = null) {
+        
+        $table_prefix = Config::DB_TABLE_PREFIX;
+        
+        $where_cond = ($where == null ? "" : "WHERE ".$where);
+        $order_cond = ($order == null ? "" : "ORDER BY ".$order);
+        $limit_cond = ($limit == null ? "" : "LIMIT ".$limit);
+         
+        $mainQuery = <<< SQL
+            SELECT 
+                *
+            FROM 
+                dsgm_staff
+            
+                
+            $where_cond
+            $order_cond
+            $limit_cond
+            
+        
+SQL;
+     
+        return $mainQuery;
+    }
+                 
 }
