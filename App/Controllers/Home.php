@@ -32,7 +32,8 @@ class Home extends \Core\Controller {
         $sh = new SessionHelper();
         $title = "Pagina di TEST";
         
-        $staffs = StaffModel::retrieveAll();
+        //$staffs = StaffModel::retrieveAll();
+        $staffs = StaffModel::retrieveOldest3();
         //$newsevents = NewsModel::retrieveAll();
         $newsevents = NewsModel::retrieveOldest3();
         
