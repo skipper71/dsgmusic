@@ -33,7 +33,8 @@ class Home extends \Core\Controller {
         $title = "Pagina di TEST";
         
         $staffs = StaffModel::retrieveAll();
-        $newsevents = NewsModel::retrieveAll();
+        //$newsevents = NewsModel::retrieveAll();
+        $newsevents = NewsModel::retrieveOldest3();
         
         View::renderTemplate('startpage.twig', [
             "sh" => $sh,

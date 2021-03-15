@@ -143,4 +143,28 @@ class NewsModel extends Model{
         return $model;
     }
     
+    public static function retrieveOldest3(){
+        $models = [];        
+        $results = NewsPersistence::retrieveOldest3();
+        
+        foreach ($results as $result) {
+            $mymodel = new static();            
+            
+            $mymodel->setId($result['id']);
+            $mymodel->setCategoria($result['categoria']);
+            $mymodel->setTitolo($result['titolo']);
+            $mymodel->setAutore($result['autore']);
+            $mymodel->setUrlImmagine($result['url_immagine']);
+            $mymodel->setLocation($result['location']);
+            $mymodel->setData($result['data']);
+            $mymodel->setOraInizio($result['ora_inizio']);
+            $mymodel->setOraFine($result['ora_fine']);
+            $mymodel->setContenuto($result['contenuto']);
+            
+            $models[$mymodel->getId()] = $mymodel;
+        }
+        
+        return $models;
+    }
+        
 }
