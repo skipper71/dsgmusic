@@ -23,6 +23,16 @@ class MediaListings extends \Core\Controller {
         ]);
     }
         
+    public function demoListAction(){
+        $sh = new SessionHelper();
+        $medias = MediaModel::retrieveAll();
+        
+        View::renderTemplate('MediaListings/grid-v2.twig', [
+            "sh" => $sh,
+            "medias" => $medias,
+        ]);
+    }
+        
     public function listOneAction(){
         $sh = new SessionHelper();
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -37,6 +47,26 @@ class MediaListings extends \Core\Controller {
         }
         
         View::renderTemplate('MediaListings/one.twig', [
+            "sh" => $sh,
+            "media" => $media,
+            "interpreti" => $interpreti,
+        ]);
+    }
+    
+    public function demoOneAction(){
+        $sh = new SessionHelper();
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        
+        $media = new MediaModel();
+        $interpreti = array();
+        
+        $media = MediaModel::retrieveOne($id);
+        if (isset($media)){
+            $catalogo_ds = $media->getCatalogoDs();
+            $interpreti = MediaInterpretiModel::retrieveAllByCatalogoDS($catalogo_ds);
+        }
+        
+        View::renderTemplate('MediaListings/detail-v1.twig', [
             "sh" => $sh,
             "media" => $media,
             "interpreti" => $interpreti,

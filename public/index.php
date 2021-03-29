@@ -42,6 +42,9 @@ $router = new Core\Router();
 // Add the routes
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('demo.php', ['controller' => 'Home', 'action' => 'demo']);
+$router->add('demolistmedia.php', ['controller' => 'MediaListings', 'action' => 'demoList']);
+$router->add('demoonemedia.php', ['controller' => 'MediaListings', 'action' => 'demoOne']);
+
 $router->add('login.php', ['controller' => 'Login', 'action' => 'index']);
 $router->add('logout.php', ['controller' => 'Login', 'action' => 'logout']);
 $router->add('token.php', ['controller' => 'Login', 'action' => 'token']);
