@@ -66,7 +66,7 @@ class MediaListings extends \Core\Controller {
             $interpreti = MediaInterpretiModel::retrieveAllByCatalogoDS($catalogo_ds);
         }
         
-        View::renderTemplate('MediaListings/detail-v1.twig', [
+        View::renderTemplate('MediaListings/detail-v2.twig', [
             "sh" => $sh,
             "media" => $media,
             "interpreti" => $interpreti,
