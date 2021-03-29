@@ -1,0 +1,17 @@
+{% extends "base.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+    <h1>Welcome</h1>
+    
+    <p>Security Token = {{ sh.security.token }}</p>
+
+    <a href="listall.php">List all songs</a><br/>
+    <a href="media_listall.php">List all media</a><br/>
+    <a href="media_search.php">Search media *NEW</a><br/>
+    <br/>
+    <a href="login.php">Login</a><br/>
+    
+{% endblock %}

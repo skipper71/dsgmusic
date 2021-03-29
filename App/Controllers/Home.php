@@ -20,14 +20,33 @@ class Home extends \Core\Controller {
      * @return void
      */
     
-    public function indexAction(){
+    public function demoAction(){
         $sh = new SessionHelper();
         
-        View::renderTemplate('Home/index.twig', [
+        View::renderTemplate('Home/ori_index.twig', [
             "sh" => $sh,
         ]);
     }
     
+    public function indexAction(){
+        $sh = new SessionHelper();
+        $title = "Pagina Home di DSGMUSIC";
+        
+        //$staffs = StaffModel::retrieveAll();
+        $staffs = StaffModel::retrieveOldest3();
+        //$newsevents = NewsModel::retrieveAll();
+        $newsevents = NewsModel::retrieveOldest3();
+        
+        View::renderTemplate('Home/index.twig', [
+            "sh" => $sh,
+            "title" => $title,
+            "staffs" => $staffs,
+            "newsevents" => $newsevents,
+            
+        ]);
+    }
+
+    /*
     public function demoAction(){
         $sh = new SessionHelper();
         $title = "Pagina di TEST";
@@ -45,4 +64,8 @@ class Home extends \Core\Controller {
             
         ]);
     }
+     * 
+     */
+    
+    
 }
