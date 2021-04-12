@@ -64,6 +64,36 @@ class MediaPersistence extends Persistence {
         
         return $results;
     }
+    
+    public static function retrieveRandom(){
+        $results = [];
+
+        try {
+            $db = static::getDB();
+            $query = <<< SQL
+                SELECT 
+                    *
+                FROM 
+                    dsgm_media                
+                ORDER BY RAND()
+                LIMIT 1                         
+SQL;
+
+            // $stmt = $db->query($query);                  // SQL statico
+            $stmt = $db->prepare($query);
+            // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+            // $results = $stmt->fetchAll(PDO::FETCH_ASSOC); // SQL statico
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+            $results = $stmt->fetchAll();
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        
+        return $results;
+    }
 
     public static function retrieveSimpleSearch($searchkey){
         $results = [];
