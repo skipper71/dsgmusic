@@ -60,7 +60,12 @@ class MediaListings extends \Core\Controller {
         $media = new MediaModel();
         $interpreti = array();
         
-        $media = MediaModel::retrieveOne($id);
+        if (!empty($id) && is_numeric($id)){            
+            $media = MediaModel::retrieveOne($id);            
+        } else {
+            $media = MediaModel::retrieveRandom();
+        }        
+        
         if (isset($media)){
             $catalogo_ds = $media->getCatalogoDs();
             $interpreti = MediaInterpretiModel::retrieveAllByCatalogoDS($catalogo_ds);
