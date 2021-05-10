@@ -16,6 +16,7 @@ class MediaInterpretiModel extends Model{
 
     
     protected $id;
+    protected $media_tipo;
     protected $catalogo_ds;
     protected $interprete_tipo;
     protected $interpreti;
@@ -23,6 +24,9 @@ class MediaInterpretiModel extends Model{
     // GETTERS
     public function getId(){
         return $this->id;
+    }    
+    public function getMediaTipo(){
+        return $this->media_tipo;
     }    
     public function getCatalogoDs(){
         return $this->catalogo_ds;
@@ -38,6 +42,9 @@ class MediaInterpretiModel extends Model{
     public function setId($value){
         $this->id = $value;
     }
+    public function setMediaTipo($value){
+        $this->media_tipo = $value;
+    }    
     public function setCatalogoDs($value){
         $this->catalogo_ds = $value;
     }    
@@ -48,13 +55,14 @@ class MediaInterpretiModel extends Model{
         $this->interpreti = $value;
     }
             
-    public static function retrieveAllByCatalogoDS($catalogo_ds){
+    public static function retrieveAllByCatalogoDS($media_tipo, $catalogo_ds){
         $models = array();        
-        $results = MediaInterpretiPersistence::retrieveAllByCatalogoDS($catalogo_ds);
+        $results = MediaInterpretiPersistence::retrieveAllByCatalogoDS($media_tipo, $catalogo_ds);
         
         foreach ($results as $result) {
             $mymodel = new static();            
             $mymodel->setId($result['id']);
+            $mymodel->setMediaTipo($result['media_tipo']);
             $mymodel->setCatalogoDs($result['catalogo_ds']);
             $mymodel->setInterpreteTipo($result['interprete_tipo']);
             $mymodel->setInterpreti($result['interpreti']);

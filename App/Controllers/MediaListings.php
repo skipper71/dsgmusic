@@ -43,7 +43,8 @@ class MediaListings extends \Core\Controller {
         $media = MediaModel::retrieveOne($id);
         if (isset($media)){
             $catalogo_ds = $media->getCatalogoDs();
-            $interpreti = MediaInterpretiModel::retrieveAllByCatalogoDS($catalogo_ds);
+            $media_tipo = $media->getMediaTipo();
+            $interpreti = MediaInterpretiModel::retrieveAllByCatalogoDS($media_tipo, $catalogo_ds);
         }
         
         View::renderTemplate('MediaListings/one.twig', [
@@ -68,7 +69,8 @@ class MediaListings extends \Core\Controller {
         
         if (isset($media)){
             $catalogo_ds = $media->getCatalogoDs();
-            $interpreti = MediaInterpretiModel::retrieveAllByCatalogoDS($catalogo_ds);
+            $media_tipo = $media->getMediaTipo();
+            $interpreti = MediaInterpretiModel::retrieveAllByCatalogoDS($media_tipo, $catalogo_ds);
         }
         
         View::renderTemplate('MediaListings/detail-v2.twig', [

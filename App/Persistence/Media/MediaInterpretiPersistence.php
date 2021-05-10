@@ -22,15 +22,17 @@ use App\Helpers\CommonFunctions;
 class MediaInterpretiPersistence extends Persistence {
     //put your code here
     
-    public static function retrieveAllByCatalogoDS($catalogo_ds){
+    public static function retrieveAllByCatalogoDS($media_tipo, $catalogo_ds){
         $results = [];
 
         try {
             $db = static::getDB();
-            $query = self::getMainQuery("catalogo_ds = :catalogo_ds");
+            // $query = self::getMainQuery("catalogo_ds = :catalogo_ds");
+            $query = self::getMainQuery("media_tipo = :media_tipo AND catalogo_ds = :catalogo_ds");
 
             // $stmt = $db->query($query);                  // SQL statico
             $stmt = $db->prepare($query);
+            $stmt->bindValue(':media_tipo', $media_tipo, PDO::PARAM_STR);
             $stmt->bindValue(':catalogo_ds', $catalogo_ds, PDO::PARAM_STR);
 
             // $results = $stmt->fetchAll(PDO::FETCH_ASSOC); // SQL statico
