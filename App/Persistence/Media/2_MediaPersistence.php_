@@ -65,37 +65,6 @@ class MediaPersistence extends Persistence {
         return $results;
     }
     
-    public static function retrievePage($page_number, $page_length){
-        $results = [];
-
-        try {
-            $db = static::getDB();
-            $query = <<< SQL
-                SELECT 
-                    *
-                FROM 
-                    dsgm_media
-                LIMIT 
-                    :offset,:page_length                        
-SQL;
-
-            // $stmt = $db->query($query);                  // SQL statico
-            $stmt = $db->prepare($query);
-            $stmt->bindValue(':offset', ($page_number-1)*$page_length, PDO::PARAM_INT);
-            $stmt->bindValue(':page_length', $page_length, PDO::PARAM_INT);
-
-            // $results = $stmt->fetchAll(PDO::FETCH_ASSOC); // SQL statico
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $stmt->execute();
-            $results = $stmt->fetchAll();
-
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-        
-        return $results;
-    }
-
     public static function retrieveRandom(){
         $results = [];
 

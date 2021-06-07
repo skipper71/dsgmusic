@@ -25,14 +25,7 @@ class MediaListings extends \Core\Controller {
         
     public function demoListAction(){
         $sh = new SessionHelper();
-        $page_number = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
-        $page_length = 12;
-        
-        if (!empty($page_number) && is_numeric($page_number)){   
-            $medias = MediaModel::retrievePage($page_number, $page_length);
-        } else {
-            $medias = MediaModel::retrievePage(1, $page_length);
-        }        
+        $medias = MediaModel::retrieveAll();
         
         View::renderTemplate('MediaListings/grid-v2.twig', [
             "sh" => $sh,

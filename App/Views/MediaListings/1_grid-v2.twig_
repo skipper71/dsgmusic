@@ -348,62 +348,7 @@
                                 </div>
                             </div>
                             <div class="booksmedia-fullwidth">
-                                <ul>                                    
-                                <!-- -->
-                                {% for media in medias |slice(0, 12)%}
-                                    <li>
-                                        <div class="book-list-icon blue-icon"></div>
-                                        <figure>
-                                            <a href="demoonemedia.php?id={{ media.id }}"><img src="assets/images/books-media/layout-3/books-media-layout3-01.jpg" alt="Book"></a>
-                                            <figcaption>
-                                                <header>
-                                                    <h4><a href="demoonemedia.php?id={{ media.id }}">{{ media.opera }}</a></h4>
-                                                    <p><strong>Autore:</strong> {{ media.autore }}</p>
-                                                    <p><strong>Etichetta:</strong> {{ media.etichetta }}</p>
-                                                    <p><strong>Anno:</strong> {{ media.anno }}</p>
-                                                    <p><strong>Tipo di media:</strong> {{ media.mediaTipo }}</p>
-                                                </header>
-                                                <p>{{ media.note }}</p>
-                                                <div class="actions">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Add TO CART">
-                                                                <i class="fa fa-shopping-cart"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Like">
-                                                                <i class="fa fa-heart"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Mail">
-                                                                <i class="fa fa-envelope"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Search">
-                                                                <i class="fa fa-search"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Print">
-                                                                <i class="fa fa-print"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="Share">
-                                                                <i class="fa fa-share-alt"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </figcaption>
-                                        </figure>                                                
-                                    </li>
-                                {% endfor %}
-                                <!-- -->
-                                {#
+                                <ul>
                                     <li>
                                         <div class="book-list-icon blue-icon"></div>
                                         <figure>
@@ -828,7 +773,6 @@
                                             </figcaption>
                                         </figure>                                                
                                     </li>
-                                    #}
                                 </ul>
                             </div>
                             <nav class="navigation pagination text-center">
