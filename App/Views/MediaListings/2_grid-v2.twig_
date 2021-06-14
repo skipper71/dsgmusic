@@ -260,10 +260,10 @@
                             <section class="search-filters">
                                 <div class="filter-box">
                                     <h3>What are you looking for at the library?</h3>
-                                    <form action="/demolistmedia.php" method="get">
+                                    <form action="http://libraria.demo.presstigers.com/index.html" method="get">
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
-                                                <input class="form-control" placeholder="Search by Keyword" id="keywords" name="keywords" type="text" value="{{ keywords }}">
+                                                <input class="form-control" placeholder="Search by Keyword" id="keywords" name="keywords" type="text">
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-6">

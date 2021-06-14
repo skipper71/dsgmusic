@@ -26,42 +26,17 @@ class MediaListings extends \Core\Controller {
     public function demoListAction(){
         $sh = new SessionHelper();
         $page_number = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
-        $keywords = filter_input(INPUT_GET, 'keywords', FILTER_SANITIZE_SPECIAL_CHARS);
-        $keywords = str_replace(' ', '', $keywords);
         $page_length = 12;
         
-        if (!empty($keywords)){
-            $medias = MediaModel::retrieveSimpleSearch($keywords);
-            if (count($medias) > $page_length){
-                if (!empty($page_number) && is_numeric($page_number)){   
-                    
-                    $inizio = ($page_number-1)*$page_length;
-                    $fine = ($page_number)*$page_length;
-                    $conta = 0;
-                    $medias2= [];
-                    
-                    foreach ($medias as $key => $media) {
-                        if ($conta>=$inizio && $conta<$fine){
-                            $medias2[$key] = $media;
-                        }
-                        $conta++;
-                    }
-                    $medias = $medias2;
-                }                        
-            }
-        } else {            
-            if (!empty($page_number) && is_numeric($page_number)){   
-                $medias = MediaModel::retrievePage($page_number, $page_length);
-            } else {
-                $medias = MediaModel::retrievePage(1, $page_length);
-            }        
-        } 
-        
+        if (!empty($page_number) && is_numeric($page_number)){   
+            $medias = MediaModel::retrievePage($page_number, $page_length);
+        } else {
+            $medias = MediaModel::retrievePage(1, $page_length);
+        }        
         
         View::renderTemplate('MediaListings/grid-v2.twig', [
             "sh" => $sh,
             "medias" => $medias,
-            "keywords" => $keywords,
         ]);
     }
         
